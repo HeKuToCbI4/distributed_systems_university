@@ -1,1 +1,1 @@
-bit_count=3
+bit_count = 3
