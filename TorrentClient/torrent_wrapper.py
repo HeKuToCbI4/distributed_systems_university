@@ -16,10 +16,16 @@ class TorrentWrapper:
             self.comment = self.parsed_data['comment']
             self.create_date = self.parsed_data['creation date']
             self.info = self.parsed_data['info']
-            self.size = self.parsed_data['info']['length']
-            self.name = self.parsed_data['info']['name']
-            self.piece_length = self.parsed_data['info']['piece length']
-            self.pieces = self.parsed_data['info']['pieces']
+            if 'length' in self.parsed_data['info'].keys():
+                self.size = self.parsed_data['info']['length']
+            else:
+                self.size = 0
+            if 'name' in self.parsed_data['info'].keys():
+                self.name = self.parsed_data['info']['name']
+            if 'piece length' in self.parsed_data['info'].keys():
+                self.piece_length = self.parsed_data['info']['piece length']
+            if 'pieces' in self.parsed_data['info'].keys():
+                self.pieces = self.parsed_data['info']['pieces']
 
     def __repr__(self):
         return f'{self.name} torrent file data wrapper.'
