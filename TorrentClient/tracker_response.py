@@ -26,6 +26,7 @@ class TrackerResponse:
 
     @property
     def peers(self):
+        print(self.response)
         peers = self.response['peers']
         if type(peers) == list:
             raise NotImplementedError

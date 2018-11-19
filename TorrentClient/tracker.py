@@ -12,6 +12,7 @@ class Tracker:
     def __init__(self, filename):
         self.torrent = TorrentWrapper(filename)
         self.peer_id = '-PC0001-' + ''.join([str(random.randint(0, 9)) for _ in range(12)])
+        print(bencode.bencode(self.torrent.info))
         self.info_hash = sha1(bencode.bencode(self.torrent.info)).digest()
         # self.http_client = aiohttp.ClientSession()
 
@@ -33,6 +34,7 @@ class Tracker:
             params['event'] = 'started'
 
         url = self.torrent.announce + '?' + urlencode(params)
+        print(url)
         response = requests.get(url)
         # with self.http_client.get(url) as response:
         if not response.status_code == 200:
